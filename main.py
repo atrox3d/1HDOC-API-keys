@@ -70,12 +70,13 @@ statuscode, weather_data = get_onecall_forecast(current=False, minutely=False, d
 print(statuscode)
 # print(json.dumps(weather_data, indent=4))
 
+weather_slice = weather_data["hourly"][:12]
+# condition_codes = [hour["weather"][0]["id"] for hour  in weather_slice]
 umbrella = False
-for hour in range(20):
-    id = weather_data["hourly"][hour]["weather"][0]["id"]
-    print(id)
-    if id < 700:
+for hour in weather_slice:
+    condition_code = hour["weather"][0]["id"]
+    if int(condition_code) < 700:
         umbrella = True
 
 if umbrella:
-    print("RAIN!")
+    print("bring an umbrella")
