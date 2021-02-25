@@ -1,4 +1,4 @@
-from private import privatedata as private
+from private import privatedata as PRIVATE
 import requests
 import json
 
@@ -28,24 +28,24 @@ def call_weather_api(endpoint: str, params: dict) -> (int, dict):
 
 def get_current_weather() -> (int, dict):
     params = {
-        KCITY: f"{private.CITY_IT},{private.COUNTRY_CODE}",
-        KLANGUAGE: private.LANGUAGE,
-        KAPI_KEY: private.API_KEY
+        KCITY: f"{PRIVATE.CITY_IT},{PRIVATE.COUNTRY_CODE}",
+        KLANGUAGE: PRIVATE.LANGUAGE,
+        KAPI_KEY: PRIVATE.API_KEY
     }
     return call_weather_api(CURRENT_WEATHER_ENDPOINT, params)
 
 
 def get_onecall_forecast(current=True, minutely=True, hourly=True, daily=True) -> (int, dict):
     # https://www.ventusky.com/merauke
-    rainy_latitude = -8.484026790361654
-    rainy_longitude = 140.40224668902974
+    # rainy_latitude = -8.484026790361654
+    # rainy_longitude = 140.40224668902974
     params = {
-        # KLATITUDE: private.LATITUDE,
-        # KLONGITUDE: private.LONGITUDE,
-        KLATITUDE: rainy_latitude,
-        KLONGITUDE: rainy_longitude,
-        KLANGUAGE: private.LANGUAGE,
-        KAPI_KEY: private.API_KEY
+        KLATITUDE: PRIVATE.LATITUDE,
+        KLONGITUDE: PRIVATE.LONGITUDE,
+        # KLATITUDE: rainy_latitude,
+        # KLONGITUDE: rainy_longitude,
+        KLANGUAGE: PRIVATE.LANGUAGE,
+        KAPI_KEY: PRIVATE.API_KEY
     }
 
     exclude = []
@@ -80,3 +80,5 @@ for hour in weather_slice:
 
 if umbrella:
     print("bring an umbrella")
+else:
+    print("sunny day")
