@@ -1,6 +1,16 @@
 from private import privatedata as PRIVATE
 import requests
 import json
+import os
+# from private import setenv
+import util.parentimport
+util.parentimport.add_parent_import()
+from _myob.api_keys import setenv
+
+print("getting API_KEY:", os.environ.get("API_KEY"))
+
+
+
 
 # api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
 CURRENT_WEATHER_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather"
